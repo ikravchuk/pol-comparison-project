@@ -1,0 +1,5 @@
+name: bst-pol-alt
+channels:
+        - bioconda
+dependencies:
+        - taxonkit

@@ -21,12 +21,22 @@ assembly_summary.txt :
 	@echo "Done"
 	@echo "-------------------------------------------------------------------"
 	
+## names2taxids		: creates 'taxids' file based on 'names' file
+.PHONY : names2taxids
+name2taxids : names
+	@echo "-------------------------------------------------------------------"
+	@echo "Creating file with taxids for spices listed in 'names'..."
+	@echo "-------------------------------------------------------------------"
+	taxonkit name2taxid < $< | cut -f 2 > taxids	
+	@echo "-------------------------------------------------------------------"
+	@echo "Done"
+	@echo "-------------------------------------------------------------------"
 
 ## help			: view this help
 .PHONY : help
 help : Makefile
 	@echo 
-	@echo "USAGE: make [command]"
+	@echo "USAGE:	make [command]"
 	@echo "..................................................................."
 	@echo "	command		:	what happens"
 	@echo "..................................................................."
