@@ -32,13 +32,25 @@ name2taxids : names
 	@echo "Done"
 	@echo "-------------------------------------------------------------------"
 
+## geobac_names		: create list of spieces from genus Geobacillus, geobac_names
+.PHONY : geobac_names
+geobac_names :
+	@echo "-------------------------------------------------------------------"
+	@echo "Creating 'geobac_names' file with names of spicies from genus Geobacillus..."
+	@echo "-------------------------------------------------------------------"
+	mkdir -p genera
+	grep Geobacillus assembly_summary.txt | cut -f 8 | sort -u > genera/geobac_names
+	@echo "-------------------------------------------------------------------"
+	@echo "Done"
+	@echo "-------------------------------------------------------------------"
+
 ## help			: view this help
 .PHONY : help
 help : Makefile
 	@echo 
 	@echo "USAGE:	make [command]"
-	@echo "..................................................................."
-	@echo "	command		:	what happens"
-	@echo "..................................................................."
+	@echo 
+	@echo " commands		: what happens"
+	@echo 
 	@sed -n 's/^##//p' $<
 	@echo 
