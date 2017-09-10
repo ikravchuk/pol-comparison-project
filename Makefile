@@ -84,27 +84,27 @@ extract_pol-seq :
 	@echo "-------------------------------------------------------------------"
 
 
-## clean_generated_data		: clean data files generated in this project
+## clean_generated_data	: clean data files generated in this project
 
 .PHONY : clean_generated_data
 clean_generated_data :
 	@echo "-------------------------------------------------------------------"
 	@echo "Cleaning all data files that are generated in this project..."
 	@echo "-------------------------------------------------------------------"
-	rm -f *names *taxids */*names */*taxids
+	rm -f *names *taxids */*names */*taxids *paths */*paths */nseqs */pseqs
 	@echo "-------------------------------------------------------------------"
 	@echo "Done"
 	@echo "-------------------------------------------------------------------"
 
 
-## clean_downloaded_data		: clean data files downloaded from external sources
+## clean_downloaded_data	: clean data files downloaded from external sources
 
 .PHONY : clean_downloaded_data
 clean_downloaded_data :
 	@echo "-------------------------------------------------------------------"
 	@echo "Cleaning all data files downloaded from external sources..."
 	@echo "-------------------------------------------------------------------"
-	rm -f assembly_summary.txt 
+	rm -f assembly_summary.txt */nseq/* */pseq/*
 	@echo "-------------------------------------------------------------------"
 	@echo "Done"
 	@echo "-------------------------------------------------------------------"
