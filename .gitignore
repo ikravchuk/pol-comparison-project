@@ -1,6 +1,9 @@
 assembly_summary.txt
+acc2taxid.txt
 *names
 *taxids
+*.faa.gz
 *.faa
+*.fna.gz
 *.fna
-*names
+*paths
