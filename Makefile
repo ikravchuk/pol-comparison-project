@@ -81,8 +81,15 @@ path_gen : */*_names scripts/path_gen.sh assembly_summary.txt
 ## seq_fetch		: fetch all 'cds' and 'protein' sequences from NCBI, save in 'nseqs' and 'pseqs' directories
 
 .PHONY : seq_fetch
-seq_fetch : */*_paths scripts/seq_fetch.sh 
+seq_fetch :  path_gen scripts/seq_fetch.sh 
 	bash scripts/seq_fetch.sh
+
+
+## stats_fetch		: check if all sequences fetched (number of links == number of files)
+
+.PHONY : stats_fetch
+stats_fetch : */*_links scripts/stats_fetch.sh 
+	bash scripts/stats_fetch.sh
 
 
 ## extract_pol-seq	: extract sequence of DNA polymerase I from multi-fasta files
