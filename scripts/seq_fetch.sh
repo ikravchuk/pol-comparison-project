@@ -2,6 +2,7 @@
 
 while IFS= read -r -d $'\0' file; do
 	#
+	sed -i 's/ftp:/https:/g' $file
 	DIRNAME=$(echo "$file" | cut -d "/" -f 1)
 	mkdir -p "${DIRNAME}/nseq" "${DIRNAME}/pseq"
 	

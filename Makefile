@@ -12,7 +12,7 @@ assembly_summary.txt :
 	@echo "-------------------------------------------------------------------"
 	@echo "Getting assembly summary for all Bacteria genomes from NCBI..."
 	@echo "-------------------------------------------------------------------"
-	curl -O ftp://ftp.ncbi.nih.gov/genomes/genbank/bacteria/assembly_summary.txt
+	curl -O https://ftp.ncbi.nih.gov/genomes/genbank/bacteria/assembly_summary.txt
 	@echo "-------------------------------------------------------------------"
 	@echo "Done"
 	@echo "-------------------------------------------------------------------"
@@ -23,7 +23,7 @@ acc2taxid.txt :
 	@echo "-------------------------------------------------------------------"
 	@echo "Getting list of accession ids associated with taxids from NCBI..."
 	@echo "-------------------------------------------------------------------"
-	curl -O ftp://ftp.ncbi.nih.gov/pub/taxonomy/accession2taxid/nucl_gb.accession2taxid.gz | gunzip -c > acc2taxid.txt 
+	curl -O https://ftp.ncbi.nih.gov/pub/taxonomy/accession2taxid/nucl_gb.accession2taxid.gz | gunzip -c > acc2taxid.txt 
 	@echo "-------------------------------------------------------------------"
 	@echo "Done"
 	@echo "-------------------------------------------------------------------"
@@ -70,6 +70,20 @@ Geobacillus_stearothermophilus/Geobacillus_stearothermophilus_names :  assembly_
 .PHONY : other_names
 other_names : genera_names scripts/generate_other_names.sh assembly_summary.txt
 	@echo "Need to be done"
+
+## path_gen		: create files with links ftp directories of NCBI, _paths
+
+.PHONY : path_gen
+path_gen : */*_names scripts/path_gen.sh assembly_summary.txt
+	bash scripts/path_gen.sh
+
+
+## seq_fetch		: fetch all 'cds' and 'protein' sequences from NCBI, save in 'nseqs' and 'pseqs' directories
+
+.PHONY : seq_fetch
+seq_fetch : */*_paths scripts/seq_fetch.sh 
+	bash scripts/seq_fetch.sh
+
 
 ## extract_pol-seq	: extract sequence of DNA polymerase I from multi-fasta files
 
