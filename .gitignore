@@ -7,3 +7,5 @@ acc2taxid.txt
 *.fna.gz
 *.fna
 *paths
+nseq_links
+pseq_links
