@@ -96,13 +96,14 @@ stats_fetch : */*_links scripts/stats_fetch.sh
 
 .PHONY : extract_pol-seq
 extract_pol-seq : 
-	@echo "-------------------------------------------------------------------"
-	@echo "Extracting sequence of DNA polymerase I from multi-fasta files..."
-	@echo "-------------------------------------------------------------------"
-	awk '/DNA polymerase I]/' RS='>' $(FILE)
-	@echo "-------------------------------------------------------------------"
-	@echo "Done"
-	@echo "-------------------------------------------------------------------"
+	bash scripts/extract_pol-seq.sh
+
+
+## align_seq	: align all DNA and protein sequences of target (DNA polymerase I)
+
+.PHONY : align_seq
+align_seq : 
+	bash scripts/align_seq.sh
 
 
 ## clean_generated_data	: clean data files generated in this project
