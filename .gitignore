@@ -11,3 +11,5 @@ nseq_links
 pseq_links
 n_pols*
 p_pols*
+*.matrix
+*.intrvls
