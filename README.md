@@ -20,6 +20,9 @@ DNA Polymerase I Comparison Project
 
 - GNU Make, bash, awk
 - GNU Parallel
+
+#### Specific dependencies:
+
 - Miniconda with bioconda
 
 After [Miniconda](https://conda.io/miniconda.html) installation run:
@@ -30,7 +33,5 @@ conda config --add channels defaults
 conda config --add channels conda-forge
 conda config --add channels bioconda
 </pre>
-
-#### Specific dependencies:
 
 Listed in `environment.yml`
