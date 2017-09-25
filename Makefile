@@ -59,10 +59,10 @@ names : geobac_names other_names
 ## geobac_names		: create list of spieces from genus Geobacillus in Geobacillus directory
 
 .PHONY : geobac_names
-geobac_names : Geobacillus_stearothermophilus/Geobacillus_stearothermophilus_names
+geobac_names : species/Geobacillus_stearothermophilus/Geobacillus_stearothermophilus_names
 
-Geobacillus_stearothermophilus/Geobacillus_stearothermophilus_names :  assembly_summary.txt scripts/gen_names.sh
-	bash scripts/gen_names.sh Geobacillus stearothermophilus
+species/Geobacillus_stearothermophilus/Geobacillus_stearothermophilus_names :  assembly_summary.txt scripts/names.sh
+	bash scripts/names.sh Geobacillus stearothermophilus
 
 
 ## other_names		: create separate and total lists of spieces from all other genera in genera directory
