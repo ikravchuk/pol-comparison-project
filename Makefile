@@ -23,7 +23,7 @@ assembly_summary.txt :
 ## names			: create list of spieces from genus Geobacillus + Bacillus
 
 #.PHONY : names
-names : geobac_names bac_names
+names : geobac_names #bac_names
 
 
 ## geobac_names		: create list of spieces from genus Geobacillus
