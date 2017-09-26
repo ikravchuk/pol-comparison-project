@@ -22,20 +22,20 @@ assembly_summary.txt :
 
 ## names			: create list of spieces from genus Geobacillus + Bacillus
 
-.PHONY : names
+#.PHONY : names
 names : geobac_names bac_names
 
 
 ## geobac_names		: create list of spieces from genus Geobacillus
 
-.PHONY : geobac_names
+#.PHONY : geobac_names
 geobac_names : assembly_summary.txt scripts/names.sh
 	bash scripts/names.sh Geobacillus
 
 
 ## bac_names		: create list of spieces from genus Bacillus
 
-.PHONY : bac_names
+#.PHONY : bac_names
 bac_names : assembly_summary.txt scripts/names.sh
 	bash scripts/names.sh Bacillus
 
@@ -43,14 +43,14 @@ bac_names : assembly_summary.txt scripts/names.sh
 
 ## path_gen		: create files with links ftp directories of NCBI, _paths
 
-.PHONY : path_gen
+#.PHONY : path_gen
 path_gen : names scripts/path_gen.sh assembly_summary.txt
 	bash scripts/path_gen.sh
 
 
 ## seq_fetch		: fetch all 'cds' and 'protein' sequences from NCBI, save in 'nseqs' and 'pseqs' directories
 
-.PHONY : seq_fetch
+#.PHONY : seq_fetch
 seq_fetch :  path_gen scripts/seq_fetch.sh 
 	bash scripts/seq_fetch.sh
 
