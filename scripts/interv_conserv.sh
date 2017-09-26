@@ -13,4 +13,4 @@ while IFS= read -r -d $'\0' file; do
 # clustal (after clustalo) 
 # cat n_pols.fna.clustal | sed -n '15p' | tail -c +45 | head -c -4
 
-done < <(find */*.align -type f -print0)
+done < <(find species/*/*.align -type f -print0)
