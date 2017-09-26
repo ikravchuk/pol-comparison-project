@@ -17,64 +17,34 @@ assembly_summary.txt :
 	@echo "Done"
 	@echo "-------------------------------------------------------------------"
 
-## acc2taxid.txt		: download list of accession ids associated with taxids
-
-acc2taxid.txt :
-	@echo "-------------------------------------------------------------------"
-	@echo "Getting list of accession ids associated with taxids from NCBI..."
-	@echo "-------------------------------------------------------------------"
-	curl -O https://ftp.ncbi.nih.gov/pub/taxonomy/accession2taxid/nucl_gb.accession2taxid.gz | gunzip -c > acc2taxid.txt 
-	@echo "-------------------------------------------------------------------"
-	@echo "Done"
-	@echo "-------------------------------------------------------------------"
 
 
 
-## names2taxids		: creates file with taxids for all 'name' files
-
-.PHONY : names2taxids
-names2taxids : names
-	@echo "-------------------------------------------------------------------"
-	@echo "Creating files with taxids for each 'names' files..."
-	@echo "-------------------------------------------------------------------"
-	taxonkit name2taxid < $< | cut -f 2 > taxids	
-	@echo "-------------------------------------------------------------------"
-	@echo "Done"
-	@echo "-------------------------------------------------------------------"
-
-
-## names			: create list of spieces from genus Geobacillus + other genera
+## names			: create list of spieces from genus Geobacillus + Bacillus
 
 .PHONY : names
-names : geobac_names other_names
-	@echo "-------------------------------------------------------------------"
-	@echo "Creating 'names' file with names from Geobacillus and other genera..."
-	@echo "-------------------------------------------------------------------"
-	cat Geobacillus/Geobacillus_names genera/other_names > names	
-	@echo "-------------------------------------------------------------------"
-	@echo "Done"
-	@echo "-------------------------------------------------------------------"
+names : geobac_names bac_names
 
 
-## geobac_names		: create list of spieces from genus Geobacillus in Geobacillus directory
+## geobac_names		: create list of spieces from genus Geobacillus
 
 .PHONY : geobac_names
-geobac_names : species/Geobacillus_stearothermophilus/Geobacillus_stearothermophilus_names
-
-species/Geobacillus_stearothermophilus/Geobacillus_stearothermophilus_names :  assembly_summary.txt scripts/names.sh
-	bash scripts/names.sh Geobacillus stearothermophilus
+geobac_names : assembly_summary.txt scripts/names.sh
+	bash scripts/names.sh Geobacillus
 
 
-## other_names		: create separate and total lists of spieces from all other genera in genera directory
+## bac_names		: create list of spieces from genus Bacillus
 
-.PHONY : other_names
-other_names : genera_names scripts/generate_other_names.sh assembly_summary.txt
-	@echo "Need to be done"
+.PHONY : bac_names
+bac_names : assembly_summary.txt scripts/names.sh
+	bash scripts/names.sh Bacillus
+
+
 
 ## path_gen		: create files with links ftp directories of NCBI, _paths
 
 .PHONY : path_gen
-path_gen : */*_names scripts/path_gen.sh assembly_summary.txt
+path_gen : names scripts/path_gen.sh assembly_summary.txt
 	bash scripts/path_gen.sh
 
 
@@ -99,7 +69,7 @@ extract_pol-seq :
 	bash scripts/extract_pol-seq.sh
 
 
-## align_seq	: align all DNA and protein sequences of target (DNA polymerase I)
+## align_seq		: align all DNA and protein sequences of target (DNA polymerase I)
 
 .PHONY : align_seq
 align_seq : 

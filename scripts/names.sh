@@ -64,7 +64,7 @@ fi
 echo
 echo "Creating '${genus}_names' file in genera/$genus/"
 mkdir -p genera/$genus
-grep "${genus}" assembly_summary.txt | cut -f 8 | sort -u > "genera/$genus/${genus}_names"
+grep "${genus}" assembly_summary.txt | cut -f 8 | sort -u | grep -v "\[" > "genera/$genus/${genus}_names"
 echo -e "\033[0;32mDone\033[0m"
 echo
 echo "Creating '_names' files for all species of $genus"
@@ -73,8 +73,8 @@ echo
 # reading names of species from genus_name file
 # applying species_gen to all names
 file="genera/$genus/${genus}_names"
-grep $genus $file | cut -f1,2 -d " " | sort -u > genera/$genus/${genus}_without_strains_names
-names="genera/$genus/${genus}_names_without_strains"
+names="genera/$genus/${genus}_without_strains_names"
+grep $genus $file | cut -f1,2 -d " " | sort -u > $names
 while IFS= read -r line; do species_gen $line; done < $names
 
 exit
