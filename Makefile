@@ -44,7 +44,7 @@ bac_names : assembly_summary.txt scripts/names.sh
 ## path_gen		: create files with links ftp directories of NCBI, _paths
 
 #.PHONY : path_gen
-path_gen : names scripts/path_gen.sh assembly_summary.txt
+path_gen : scripts/path_gen.sh assembly_summary.txt #names
 	bash scripts/path_gen.sh
 
 
